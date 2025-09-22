@@ -1,0 +1,74 @@
+@startuml
+title com.example.payroll - Class Diagram
+
+package "com.example.payroll" {
+  abstract class Employee {
+    - firstName : String
+    - lastName : String
+    - socialSecurityNumber : String
+    + Employee(firstName:String, lastName:String, socialSecurityNumber:String)
+    + getFirstName() : String
+    + getLastName() : String
+    + getSocialSecurityNumber() : String
+    + setFirstName(firstName : String) : void
+    + setLastName(lastName : String) : void
+    + setSocialSecurityNumber(ssn : String) : void
+    {abstract} + earnings() : double
+    + toString() : String
+  }
+
+  class SalariedEmployee extends Employee {
+    - weeklySalary : double
+    + SalariedEmployee(firstName:String, lastName:String, ssn:String, weeklySalary:double)
+    + getWeeklySalary() : double
+    + setWeeklySalary(weeklySalary : double) : void
+    + earnings() : double
+    + toString() : String
+  }
+
+  class HourlyEmployee extends Employee {
+    - wage : double
+    - hours : double
+    + HourlyEmployee(firstName:String, lastName:String, ssn:String, wage:double, hours:double)
+    + getWage() : double
+    + getHours() : double
+    + setWage(wage : double) : void
+    + setHours(hours : double) : void
+    + earnings() : double
+    + toString() : String
+  }
+
+  class CommissionEmployee extends Employee {
+    - commissionRate : double
+    - grossSales : double
+    + CommissionEmployee(firstName:String, lastName:String, ssn:String, commissionRate:double, grossSales:double)
+    + getCommissionRate() : double
+    + getGrossSales() : double
+    + setCommissionRate(rate : double) : void
+    + setGrossSales(sales : double) : void
+    + earnings() : double
+    + toString() : String
+  }
+
+  class BaseEmployee extends Employee {
+    - baseSalaryAnnual : double
+    + BaseEmployee(firstName:String, lastName:String, ssn:String, baseSalaryAnnual:double)
+    + getBaseSalaryAnnual() : double
+    + setBaseSalaryAnnual(salary : double) : void
+    + getBaseSalaryWeekly() : double
+    + earnings() : double
+    + toString() : String
+  }
+
+  class EmployeeTableDriver {
+    + main(args : String[]) : void
+  }
+
+  Employee <|-- SalariedEmployee
+  Employee <|-- HourlyEmployee
+  Employee <|-- CommissionEmployee
+  Employee <|-- BaseEmployee
+
+}
+
+@enduml

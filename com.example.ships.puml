@@ -1,0 +1,41 @@
+@startuml
+title com.example.ships - Class Diagram
+
+package "com.example.ships" {
+  class Ship {
+    - name : String
+    - yearBuilt : String
+    + Ship(name:String, yearBuilt:String)
+    + getName() : String
+    + setName(name:String) : void
+    + getYearBuilt() : String
+    + setYearBuilt(yearBuilt:String) : void
+    + print() : void
+  }
+
+  class CruiseShip extends Ship {
+    - maxPassengers : int
+    + CruiseShip(name:String, yearBuilt:String, maxPassengers:int)
+    + getMaxPassengers() : int
+    + setMaxPassengers(maxPassengers:int) : void
+    + print() : void
+  }
+
+  class CargoShip extends Ship {
+    - cargoCapacity : int
+    + CargoShip(name:String, yearBuilt:String, cargoCapacity:int)
+    + getCargoCapacity() : int
+    + setCargoCapacity(cargoCapacity:int) : void
+    + print() : void
+  }
+
+  class ShipsDriver {
+    + main(args : String[]) : void
+  }
+
+  Ship <|-- CruiseShip
+  Ship <|-- CargoShip
+
+ }
+
+@enduml

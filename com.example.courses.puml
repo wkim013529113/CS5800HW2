@@ -1,0 +1,77 @@
+@startuml
+title com.example.courses - Class Diagram
+
+package "com.example.courses" {
+  class Textbook {
+    - title : String
+    - author : String
+    - publisher : String
+    + Textbook(title:String, author:String, publisher:String)
+    + getTitle() : String
+    + setTitle(title:String) : void
+    + getAuthor() : String
+    + setAuthor(author:String) : void
+    + getPublisher() : String
+    + setPublisher(publisher:String) : void
+    + toString() : void
+  }
+
+  class Instructor {
+    - firstName : String
+    - lastName : String
+    - officeNumber : String
+    + Instructor(firstName:String, lastName:String, officeNumber:String)
+    + getFirstName() : String
+    + setFirstName(firstName:String) : void
+    + getLastName() : String
+    + setLastName(lastName:String) : void
+    + getOfficeNumber() : String
+    + setOfficeNumber(officeNumber:String) : void
+    + toString() : void
+  }
+
+  class Course {
+    - courseName : String
+    - instructor : Instructor
+    - textbook : Textbook
+    + Course(courseName:String, instructor:Instructor, textbook:Textbook)
+    + getCourseName() : String
+    + setCourseName(courseName:String) : void
+    + getInstructor() : Instructor
+    + setInstructor(instructor:Instructor) : void
+    + getTextbook() : Textbook
+    + setTextbook(textbook:Textbook) : void
+    + print() : void
+  }
+
+  class CourseMulti {
+    - courseName : String
+    - instructors : Instructor[]
+    - textbooks : Textbook[]
+    + CourseMulti(courseName:String)
+    + getCourseName() : String
+    + setCourseName(courseName:String) : void
+    + getInstructors() : Instructor[]
+    + addInstructors(instructors:Instructor[]) : void
+    + getTextbooks() : Textbook[]
+    + addTextbooks(textbooks:Textbook[]) : void
+    + print() : void
+  }
+
+  class CourseDriverSingle {
+    + main(args:String[]) : void
+  }
+
+  class CourseDriverMulti {
+    + main(args:String[]) : void
+  }
+
+  ' Relationships
+  Course --> Instructor
+  Course --> Textbook
+  CourseMulti --> Instructor
+  CourseMulti --> Textbook
+
+}
+
+@enduml

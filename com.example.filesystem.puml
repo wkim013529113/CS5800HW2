@@ -1,0 +1,53 @@
+@startuml
+title com.example.filesystem - Class Diagram
+
+package "com.example.filesystem" {
+
+  class FsFile {
+    - name : String
+    - sizeBytes : long
+    + FsFile(name:String, sizeBytes:long)
+    + getName() : String
+    + setName(name:String) : void
+    + getSizeBytes() : long
+    + setSizeBytes(sizeBytes:long) : void
+    + print() : void
+  }
+
+  class Folder {
+    - name : String
+    - files : List<FsFile>
+    - subfolders : List<Folder>
+    + Folder(name:String)
+    + getName() : String
+    + setName(name:String) : void
+    + addFile(file:FsFile) : void
+    + removeFile(name:String) : boolean
+    + addSubfolder(folder:Folder) : void
+    + removeSubfolder(name:String) : boolean
+    + getFiles() : List<FsFile>
+    + getSubfolders() : List<Folder>
+    + print() : void
+  }
+
+  class FileSystemDriver {
+    + main(args:String[]) : void
+  }
+
+  ' Composition: a Folder owns its FsFiles (deletes them when it is deleted)
+  Folder "1" *-- "0..*" FsFile : contains
+
+  ' Composition (self): a Folder owns its subfolders recursively
+  Folder "1" *-- "0..*" Folder : subfolders
+
+  FileSystemDriver ..> Folder : uses
+  FileSystemDriver ..> FsFile : uses
+
+  note right of Folder
+    Deleting a Folder deletes all contained FsFile
+    and sub-Folder instances (composition).
+  end note
+
+}
+
+@enduml
