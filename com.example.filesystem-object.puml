@@ -1,0 +1,48 @@
+@startuml
+title Part 5 — com.example.filesystem (after deleting "app")
+
+' Folders
+object "<u>phpDemo1:Folder</u>" as pd1 {
+  name = "php_demo1"
+}
+
+object "<u>sourceFiles:Folder</u>" as sf {
+  name = "Source Files"
+}
+
+object "<u>dotPhalcon:Folder</u>" as ph {
+  name = ".phalcon"
+}
+
+object "<u>cache:Folder</u>" as ca {
+  name = "cache"
+}
+
+object "<u>pub:Folder</u>" as pb {
+  name = "public"
+}
+
+' Files under public
+object "<u>htaccess:FsFile</u>" as f1 {
+  name = ".htaccess"
+}
+
+object "<u>htrouter:FsFile</u>" as f2 {
+  name = ".htrouter.php"
+}
+
+object "<u>indexHtml:FsFile</u>" as f3 {
+  name = "index.html"
+}
+
+' Containment after step 2 (app has been removed)
+pd1 *-- sf : subfolder
+sf  *-- ph : subfolder
+sf  *-- ca : subfolder
+sf  *-- pb : subfolder
+
+pb  *-- f1 : file
+pb  *-- f2 : file
+pb  *-- f3 : file
+
+@enduml

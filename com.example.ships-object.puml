@@ -1,0 +1,33 @@
+@startuml
+
+title Part 3 — com.example.ships (after dynamic creation)
+
+' Objects with attribute snapshots
+object "<u>ssClassic:Ship</u>" as ss {
+  name = "SS Classic"
+  yearBuilt = "1998"
+}
+
+object "<u>oceanStar:CruiseShip</u>" as os {
+  name = "Ocean Star"
+  yearBuilt = "2010"
+  maxPassengers = 3200
+}
+
+object "<u>atlasTrader:CargoShip</u>" as at {
+  name = "Atlas Trader"
+  yearBuilt = "2005"
+  cargoCapacityTonnage = 45000
+}
+
+' Optional: show the array that holds them in ShipsDriver
+object "<u>fleet:Ship[3]</u>" as fl {
+  size = 3
+}
+
+' Fleet references
+fl --> ss : [0]
+fl --> os : [1]
+fl --> at : [2]
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+title Part 4 — com.example.courses (after step 5. Before adding a second instructor and book)
+
+object "<u>ase:Course</u>" as crs {
+  courseName = "Advanced Software Engineering"
+}
+
+object "<u>nima:Instructor</u>" as instrctr {
+  firstName = "Nima"
+  lastName = "Davarpanah"
+  officeNumber = "3-2636"
+}
+
+object "<u>cleanCode:Textbook</u>" as txtbk {
+  title = "Clean Code"
+  author = "Robert C. Martin"
+  publisher = "Prentice Hall"
+}
+
+' Relationships
+crs --> instrctr : instructor
+crs --> txtbk : textbook
+
+@enduml
